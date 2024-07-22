@@ -6,7 +6,6 @@ import pb from "@/utils/pb";
 export default async function Home() {
   const resultList = await pb.collection("projects").getList<Project>(1, 50, {
     expand: "cover",
-    cache: "no-store",
     sort: "-time",
   });
 
