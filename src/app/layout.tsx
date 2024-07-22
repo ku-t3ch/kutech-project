@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
-
-import { GeistSans } from "geist/font/sans";
+import '@mantine/core/styles.css';
 import { type Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "@/trpc/react";
 
