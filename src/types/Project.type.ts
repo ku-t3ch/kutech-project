@@ -1,13 +1,12 @@
 export interface Project {
   id: string;
-  collectionId: string;
-  collectionName: string;
-  created: string;
-  updated: string;
+  user_created: string;
+  date_created: string;
+  user_updated?: string;
+  date_updated?: string;
   name: string;
-  description: string;
-  detail: string;
-  link_to_project: string;
-  cover: string;
-  time: string;
+  detail?: string;
+  cover?: string;
+  description?: string;
+  release?: string;
 }

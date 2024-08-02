@@ -1,18 +1,23 @@
+import { readItems } from "@directus/sdk";
+import { unstable_noStore } from "next/cache";
 import TimelineSection from "./_components/TimelineSection";
 import { HydrateClient } from "@/trpc/server";
 import { type Project } from "@/types/Project.type";
-import pb from "@/utils/pb";
+import directusClient from "@/utils/directus";
 
 export default async function Home() {
-  const resultList = await pb.collection("projects").getList<Project>(1, 50, {
-    expand: "cover",
-    sort: "-time",
-  });
+  unstable_noStore();
+  const result = await directusClient.request<Project[]>(
+    readItems("project", {
+      fields: ["*"],
+      sort: ["-release"],
+    }),
+  );
 
   return (
     <HydrateClient>
-      <div className="flex min-h-screen justify-center py-10 px-5">
-        <TimelineSection projects={resultList.items} />
+      <div className="flex min-h-screen justify-center px-5 py-10">
+        <TimelineSection projects={result} />
       </div>
     </HydrateClient>
   );

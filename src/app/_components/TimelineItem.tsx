@@ -15,13 +15,6 @@ export default function TimelineItem(props: Props) {
     <Timeline.Item
       className="cursor-pointer hover:bg-gray-100"
       onClick={() => router.push(`/lookup/${props.project.id}`)}
-      bullet={
-        <Avatar
-          size={40}
-          radius="xl"
-          src={fileNameToUrl(props.project.cover, props.project)}
-        />
-      }
       title={props.project.name}
     >
       <Text c="dimmed" size="sm" lineClamp={3}>
@@ -29,11 +22,13 @@ export default function TimelineItem(props: Props) {
       </Text>
       <div className="flex gap-2">
         <Text size="xs" mt={4} lineClamp={3}>
-          {format(props.project.time, "dd-MM-yyyy")}
+          {props.project.release}
         </Text>
-        <Text size="xs" mt={4} lineClamp={3}>
-          {formatDistanceToNowStrict(new Date(props.project.time))}
-        </Text>
+        {props.project.release && (
+          <Text size="xs" mt={4} lineClamp={3}>
+            {formatDistanceToNowStrict(new Date(props.project.release))}
+          </Text>
+        )}
       </div>
     </Timeline.Item>
   );
