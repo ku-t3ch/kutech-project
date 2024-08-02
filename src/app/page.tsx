@@ -10,13 +10,13 @@ export default async function Home() {
   const result = await directusClient.request<Project[]>(
     readItems("project", {
       fields: ["*"],
-      sort: ["-release"],
+      sort: ["-release"]
     }),
   );
 
   return (
     <HydrateClient>
-      <div className="flex min-h-screen justify-center px-5 py-10">
+      <div className="min-h-screen max-w-7xl mx-auto py-10 px-3">
         <TimelineSection projects={result} />
       </div>
     </HydrateClient>

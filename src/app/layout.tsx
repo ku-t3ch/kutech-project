@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import "@mantine/core/styles.css";
+import '@mantine/carousel/styles.css';
 import { type Metadata } from "next";
 import { Anuphan } from "next/font/google";
 
