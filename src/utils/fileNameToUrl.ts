@@ -6,8 +6,6 @@ const fileNameToUrl = (fileName: string, data: Project) => {
   if (fileName) {
     const record = {
       id: data?.id,
-      collectionId: data?.collectionId,
-      collectionName: data?.collectionName,
     } as RecordModel;
 
     const url = pb.files.getUrl(record, fileName, { thumb: "100x250" });

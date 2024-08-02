@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { readItem } from "@directus/sdk";
 import { type PageProps } from ".next/types/app/page";
-import { Project } from "@/types/Project.type";
-import pb from "@/utils/pb";
+import { type Project } from "@/types/Project.type";
+import directusClient from "@/utils/directus";
 
 export default async function Page(props: PageProps) {
-  const record = await pb
-    .collection("projects")
-    .getOne<Project>(props.params.id as string, {
-      expand: "cover",
-    });
+  const result = await directusClient.request<Project>(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    readItem("project", props.params.id ?? ""),
+  );
 
-  console.log(record);
+  console.log(result);
 
   return <div>adsf</div>;
 }
